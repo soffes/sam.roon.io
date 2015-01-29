@@ -6,12 +6,8 @@ class Redirect
   BLOG_URL = 'http://blog.soff.es'.freeze
 
   def self.call(env)
-    request = Rack::Request.new(env)
-
-    url = BLOG_URL + request.path
-
     response = Rack::Response.new
-    response.redirect url
+    response.redirect BLOG_URL + Rack::Request.new(env).path
     response.finish
   end
 end
